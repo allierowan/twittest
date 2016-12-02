@@ -1,0 +1,3 @@
+<h1><%= current_user.full_name %> <small><%= current_user.user_name %></small></h1>
+<h3>Posts</h3>
+<%= render partial: "posts/list", locals: { posts: current_user.posts } %>

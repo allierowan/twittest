@@ -1,2 +1,31 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>Please create a login to get started</h1>
+<%= form_for @user do |f| %>
+
+  <div class="form-group">
+    <%= f.label :full_name, class: "control-label" %>
+    <%= f.text_field :full_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :user_name, class: "control-label" %>
+    <%= f.text_field :user_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, class: "control-label" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, class: "control-label" %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: "control-label" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Create Login", class: "btn btn-primary" %>
+
+<% end %>

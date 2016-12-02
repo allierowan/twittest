@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: MyText
-  user_id: 1
+  body: What's going on in the forbidden forest?
+  user: hagrid
 
 two:
-  body: MyText
-  user_id: 1
+  body: I'm hungry for steak
+  user: fang

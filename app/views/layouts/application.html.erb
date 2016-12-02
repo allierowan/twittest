@@ -6,9 +6,56 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#twittest-nav" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+           <%= link_to "Twittest", posts_path, class: "navbar-brand" %>
+        </div>
+        <div class="collapse navbar-collapse" id="twittest-nav">
+          <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <li><%= link_to "Profile", user_path(current_user.id) %></li>
+          <% end %>
+            <li class="dropdown">
+              <% if current_user %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.user_name %> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", user_path(current_user.id) %></li>
+                  <li><%= link_to "Logout", session_path, method: :delete %></li>
+                </ul>
+              <% else %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Sign Up", new_user_path %></li>
+                  <li><%= link_to "Login", new_session_path %></li>
+                </ul>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-<%= type %>">
+          <%= msg %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

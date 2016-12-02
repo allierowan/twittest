@@ -1,2 +1,10 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<%= form_for([@user, @post]) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :body, class: "control-label" %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Post", class: "btn btn-primary" %>
+
+<% end %>
