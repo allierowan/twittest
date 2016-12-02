@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:current_user_id] = @user.id
       redirect_to user_path(@user.id)
     else
-      redirect_to new_session_path, danger: "Username or password was not correct."
+      redirect_to new_session_path, flash: {danger: "Username or password was not correct."}
     end
   end
 

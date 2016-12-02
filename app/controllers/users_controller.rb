@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:current_user_id] = @user.id
+      UserMailer.sign_up_email(@user).deliver_now
       redirect_to user_path(@user.id)
     else
       render :new
