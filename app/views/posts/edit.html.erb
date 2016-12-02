@@ -1,2 +1,10 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<%= form_for([@user, @post]) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :body, class: "control-label" %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Update", class: "btn btn-primary" %>
+
+<% end %>

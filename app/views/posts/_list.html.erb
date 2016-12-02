@@ -1,9 +1,17 @@
 <ul class="list-unstyled">
   <% posts.each do |post| %>
     <li>
-      <%= post.body %>
-      <br>
-      <small><%= post.user.user_name %></small>
+      <span class="post-user-name"><%= link_to post.user.user_name, users_posts_path(post.user_id) %></span>
+      <span class="post-time-ago"><%= time_ago_in_words(post.created_at) %> ago</span>
+      <p>
+        <%= post.body %>
+      </p>
+      <p>
+        <% if current_user && current_user.id == post.id %>
+          <%= link_to "Edit", edit_user_post_path(current_user.id, post.id) %>
+          <%= link_to "Delete", user_post_path(current_user.id, post.id), method: :delete %>
+        <% end %>
+      </p>
     </li>
   <% end %>
 </ul>

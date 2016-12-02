@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :posts, except: [:index]
+    member do
+      resources :users_posts, only: [:index]
+    end
   end
   resources :posts, only: [:index]
 

@@ -1,1 +1,6 @@
+<% if current_user %>
+  <%= link_to "Post Something", new_user_post_path(current_user.id) %>
+<% end %>
+<br>
+<br>
 <%= render partial: "list", locals: { posts: @posts } %>
