@@ -1,6 +1,27 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
 
+  def index
+    @per_page = 20.0
+    @posts = Post.order(created_at: :desc).limit(@per_page).offset(@per_page * current_page)
+  end
+
+  def current_page
+    page = params[:page].to_i
+    @page = if page < total_pages && page > 0
+      page
+    else
+      0
+    end
+  end
+
+  def total_pages
+    (Post.count / @per_page).ceil
+  end
+
+  helper_method :current_page
+  helper_method :total_pages
+
   def new
     @user = current_user
     @post = @user.posts.new()
@@ -30,14 +51,12 @@ class PostsController < ApplicationController
     end
   end
 
-  def index
-    @posts = Post.all.reverse
-  end
-
   def destroy
     Post.find(params[:id]).destroy
     redirect_to posts_path
   end
+
+  private
 
   def post_params
     params.require(:post).permit(:body)

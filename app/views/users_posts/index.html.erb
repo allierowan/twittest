@@ -1,1 +1,8 @@
+<h1><%= @user.user_name %>'s Posts</h1>
 <%= render partial: "posts/list", locals: { posts: @posts } %>
+<% if current_page > 0 %>
+  <%= link_to "Previous Page", users_posts_path(id: @user.id, page: current_page - 1) %>
+<% end %>
+<% if total_pages > (current_page + 1) %>
+  <%= link_to "Next Page", users_posts_path(id: @user.id, page: current_page + 1) %>
+<% end %>
