@@ -8,6 +8,7 @@ class Ability
     can :read, Post
     can :manage, Post, :user_id => user.id if user
     can :create, Post if user
+    can :manage, User, :id => user.id if user
 
     #   if user.admin?
     #     can :manage, :all
