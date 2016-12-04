@@ -5,8 +5,16 @@
 <br>
 <%= render partial: "list", locals: { posts: @posts } %>
 
+<% if total_pages == 1 %>
+  <% page_links = 0 %>
+<% elsif total_pages < 10 %>
+  <% page_links = total_pages %>
+<% else %>
+  <% page_links = 10 %>
+<% end %>
+
 <ul class="pagination">
-  <% 10.times do |i|%>
+  <% page_links.times do |i|%>
     <% if current_page == i && current_page < 4 %>
       <li class="active">
         <%= link_to i + 1, posts_path(page: i) %>
