@@ -1,4 +1,8 @@
 <h1><%= current_user.full_name %> <small><%= current_user.user_name %></small></h1>
+<p>
+  <%= link_to "Edit Profile", edit_profile_path %>
+  <%= link_to "Edit Password", edit_password_path %>
+</p>
 <h3>Posts</h3>
 <%= link_to "Post something", new_user_post_path(current_user.id) %>
 <br />

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:index]
 
   resources :profiles, only: [:edit, :update]
+  get "profiles/:id/edit_password", controller: :profiles, action: :edit_password, as: :edit_password
 
   root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
