@@ -4,9 +4,25 @@
 <br>
 <br>
 <%= render partial: "list", locals: { posts: @posts } %>
-<% if current_page > 0 %>
-  <%= link_to "Previous Page", posts_path(page: current_page - 1) %>
-<% end %>
-<% if total_pages > (current_page + 1) %>
-  <%= link_to "Next Page", posts_path(page: current_page + 1) %>
-<% end %>
+
+<ul class="pagination">
+  <% 10.times do |i|%>
+    <% if current_page == i && current_page < 4 %>
+      <li class="active">
+        <%= link_to i + 1, posts_path(page: i) %>
+      </li>
+    <% elsif current_page == current_page + i - 4 && current_page >= 4 %>
+      <li class="active">
+        <%= link_to current_page + i - 3, posts_path(page: current_page + i - 4) %>
+      </li>
+    <% elsif current_page < 4 %>
+      <li>
+        <%= link_to i + 1, posts_path(page: i) %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to current_page + i - 3, posts_path(page: current_page + i - 4) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

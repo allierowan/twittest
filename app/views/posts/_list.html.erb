@@ -2,7 +2,13 @@
   <% posts.each do |post| %>
     <li>
       <span class="post-user-name"><%= link_to post.user.user_name, users_posts_path(post.user_id) %></span>
-      <span class="post-time-ago"><%= time_ago_in_words(post.created_at) %> ago</span>
+      <p class="post-time-ago">
+        <% if post.created_at > 24.hours.ago %>
+          <%= time_ago_in_words(post.created_at) %> ago
+        <% else %>
+          on <%= post.created_at.strftime("%B %e, %Y ") %>
+        <% end %>
+      </p>
       <p>
         <%= post.body %>
       </p>
