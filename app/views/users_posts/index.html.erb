@@ -1,30 +1,15 @@
 <h1><%= @user.user_name %>'s Posts</h1>
 <%= render partial: "posts/list", locals: { posts: @posts } %>
-<% if total_pages == 1 %>
-  <% page_links = 0 %>
-<% elsif total_pages < 10 %>
-  <% page_links = total_pages %>
-<% else %>
-  <% page_links = 10 %>
-<% end %>
 
 <ul class="pagination">
-  <% page_links.times do |i|%>
-    <% if current_page == i && current_page < 4 %>
+  <% num_page_links.times do |i| %>
+    <% if current_page == start_page_count + i %>
       <li class="active">
-        <%= link_to i + 1, users_posts_path(page: i) %>
-      </li>
-    <% elsif current_page == current_page + i - 4 && current_page >= 4 %>
-      <li class="active">
-        <%= link_to current_page + i - 3, users_posts_path(page: current_page + i - 4) %>
-      </li>
-    <% elsif current_page < 4 %>
-      <li>
-        <%= link_to i + 1, users_posts_path(page: i) %>
+        <%= link_to start_page_count + i + 1, users_posts_path(page: start_page_count + i) %>
       </li>
     <% else %>
-      <li>
-        <%= link_to current_page + i - 3, users_posts_path(page: current_page + i - 4) %>
+      <li class>
+        <%= link_to start_page_count + i + 1, users_posts_path(page: start_page_count + i) %>
       </li>
     <% end %>
   <% end %>

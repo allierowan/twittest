@@ -19,8 +19,30 @@ class PostsController < ApplicationController
     (Post.count / @per_page).ceil
   end
 
+  def start_page_count
+    if current_page < 4
+      0
+    else
+      current_page - 4
+    end
+  end
+
+  def num_page_links
+    if total_pages == 1
+      0
+    elsif total_pages < 10
+      total_pages
+    elsif (total_pages - current_page) < 5
+      4 + (total_pages - current_page)
+    else
+      10
+    end
+  end
+
   helper_method :current_page
   helper_method :total_pages
+  helper_method :start_page_count
+  helper_method :num_page_links
 
   def new
     @user = current_user
