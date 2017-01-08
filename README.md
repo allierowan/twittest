@@ -1,24 +1,24 @@
-# README
+# Twittest
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Twittest was an Iron Yard homework assignment where we were tasked with building our own version of Twitter. Users can create posts, view a stream of all other users' posts and view a specific users' posts. They can also edit their own profile or password. Users log in with their username, which must be unique.
 
-Things you may want to cover:
+## Users
+```ruby
+legolas = User.create({
+  email: "test@test.com",
+  password: "password", # gets set using has_secure_password and bcrypt
+  full_name: "Legolas",
+  user_name: "blondie_elf"
+  })
+```
 
-* Ruby version
+## Posts
+Users have many posts and posts belong to user.
+```ruby
+post = Post.new({
+  body: "A red sun rises, blood has been spilled this night."
+  })
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+legolas.posts << post
+legolas.save
+```
